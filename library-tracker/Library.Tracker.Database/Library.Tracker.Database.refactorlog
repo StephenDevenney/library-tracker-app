@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="9dc3393b-667e-44af-8725-a2b4c3abdd28" ChangeDateTime="07/18/2021 14:33:02">
+    <Property Name="ElementName" Value="[dbo].[LibraryShelf].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LibraryShelf]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BookId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8ac066c5-77cb-472c-aade-6ddd3229a8df" ChangeDateTime="07/18/2021 14:43:43">
+    <Property Name="ElementName" Value="[dbo].[NavMenu].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[NavMenu]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NavMenuId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e1c1ba49-9af1-4039-84b9-5736c21f1f33" ChangeDateTime="07/18/2021 14:46:40">
+    <Property Name="ElementName" Value="[Security].[NavMenuRole].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Security].[NavMenuRole]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NavMenuRoleId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f84ea90f-dc70-415f-92b5-83b821f64dbe" ChangeDateTime="07/18/2021 15:11:41">
+    <Property Name="ElementName" Value="[Security].[User].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Security].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="acad4daa-d418-4e29-80b6-29535105ca6b" ChangeDateTime="07/18/2021 15:12:25">
+    <Property Name="ElementName" Value="[Security].[User].[FK_RoleID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Security].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_UserRoleID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="86eb841e-6e11-4bdd-ba29-c743af559b2b" ChangeDateTime="07/18/2021 15:12:33">
+    <Property Name="ElementName" Value="[Security].[User].[FK_UserRoleID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Security].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_UserRoleId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1b4a276e-ae72-445c-b893-e0ff6b2098d4" ChangeDateTime="07/18/2021 15:12:43">
+    <Property Name="ElementName" Value="[Security].[User].[UserName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Security].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_UserRoleId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5ee8d083-c067-4ca2-a6d7-af576f18d100" ChangeDateTime="07/18/2021 15:23:11">
+    <Property Name="ElementName" Value="[dbo].[UserRole].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserRole]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserRoleId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6397e20f-380e-429d-944a-f7404e68145c" ChangeDateTime="07/18/2021 15:23:53">
+    <Property Name="ElementName" Value="[dbo].[UserRole].[roleName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserRole]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RoleName" />
+  </Operation>
+</Operations>
