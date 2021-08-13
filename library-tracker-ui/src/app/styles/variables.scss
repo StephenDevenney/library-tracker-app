@@ -1,0 +1,82 @@
+/*
+# Sizes
+# Colours
+# Colour Themes
+    ## Standard
+    ## Dark
+# Icons
+# Loader Colour
+*/
+
+// # Sizes
+// $side-nav-w: 15.2rem;
+$side-nav-w: calc(10vw + 1rem);
+$header-h: 6.5rem;
+$heading-h: 3.4rem;
+$body-h: calc(100% - 3.4rem);
+$border-radius-default: 0.125rem;
+$border-radius-large: 0.25rem;
+$border-radius-rounded: 0.5rem;
+$transition-250: 250ms;
+$transition-150: 150ms;
+$hover-lighten: 20;
+
+// # Colours
+$green-1: #037455;
+$green-2: #009775;
+$green-3: #77A78C;
+$green-4: #DFEEE8;
+$grey-1: #333333;
+$grey-2: #595959;
+$grey-3: #808080;
+$grey-4: #a6a6a6;
+$grey-5: #cccccc;
+$grey-6: #e6e6e6;
+$grey-7: #f3f3f3;
+$orange-1: #cc6600;
+$orange-2: #ff8000;
+$orange-3: #ff9933;
+$orange-4: #ffb366;
+$orange-5: #ffcc99;
+$orange-6: #ffe6cc;
+$blue-1: #0073e6;
+$blue-2: #1a8cff;
+$blue-3: #3399ff;
+$blue-4: #66b3ff;
+$blue-5: #99ccff;
+$blue-6: #cce6ff;
+$blue-7: #e6f2ff;
+
+// # Colour Themes
+    // ## Standard
+    $standard-primary: $grey-6;
+    $standard-secondary: $blue-1;
+    $standard-tertiary: $grey-3;
+    $standard-primary-text: $grey-1;
+    $standard-secondary-text: $grey-7;
+    $standard-tertiary-text: $grey-7;
+
+    // ## Dark
+    $dark-primary: $grey-2;
+    $dark-secondary: $grey-1;
+    $dark-tertiary: $grey-5;
+    $dark-primary-text: $grey-6;
+    $dark-secondary-text: $grey-6;
+    $dark-tertiary-text: $grey-3;
+
+// # Icons
+$icon: $grey-1;
+$icon-grey: $grey-3;
+$icon-white: $grey-7;
+$icon-green: $green-1;
+
+// # Loader
+$loader-color: $blue-4;
+
+.text-white {
+    color: $grey-7 !important;
+}
+
+.text-black {
+    color: $grey-2 !important;
+}

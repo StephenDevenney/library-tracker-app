@@ -1,0 +1,87 @@
+*.dbmdl
+*.jfm
+appsettings.Development.json
+
+# From .NET Core 3.0 you can use the command: `dotnet new gitignore` to generate a customizable .gitignore file
+
+*.swp
+*.*~
+project.lock.json
+.DS_Store
+*.pyc
+
+# Visual Studio Code
+.vscode
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Visual Studio 2015
+.vs/
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/library-tracker-ui/dist
+/library-tracker-ui/tmp
+/library-tracker-ui/out-tsc
+# Only exists if Bazel was run
+/library-tracker-ui/bazel-out
+
+# dependencies
+/library-tracker-ui/node_modules
+
+# profiling files
+/library-tracker-ui/chrome-profiler-events*.json
+
+# IDEs and editors
+/library-tracker-ui/.idea
+/library-tracker-ui/.project
+/library-tracker-ui/.classpath
+/library-tracker-ui/.c9/
+/library-tracker-ui/*.launch
+/library-tracker-ui/.settings/
+/library-tracker-ui/*.sublime-workspace
+
+# IDE - VSCode
+/library-tracker-ui/.vscode/*
+/library-tracker-ui/!.vscode/settings.json
+/library-tracker-ui/!.vscode/tasks.json
+/library-tracker-ui/!.vscode/launch.json
+/library-tracker-ui/!.vscode/extensions.json
+/library-tracker-ui/.history/*
+
+# misc
+/library-tracker-ui/.sass-cache
+/library-tracker-ui/connect.lock
+/library-tracker-ui/coverage
+/library-tracker-ui/libpeerconnection.log
+/library-tracker-ui/npm-debug.log
+/library-tracker-ui/yarn-error.log
+/library-tracker-ui/testem.log
+/library-tracker-ui/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+.gitattributes
+
+
