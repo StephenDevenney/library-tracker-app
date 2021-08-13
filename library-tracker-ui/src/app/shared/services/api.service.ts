@@ -44,5 +44,9 @@ export class APIService {
                             }
                         });
     }
+
+    public async authenticateUserName(userName: string): Promise<any> {
+        return this.http.get(this.globals.config.authApiUrl + "security/authenticate/" + userName).toPromise();
+    }
 }
 

@@ -7,7 +7,7 @@ import { APIService } from './api.service';
 export class AuthService {
 
     constructor(private router: Router,
-                private http: APIService,
+                private apiService: APIService,
                 private globals: Globals){}
 
     public isAuthenticated(): boolean {
@@ -34,5 +34,9 @@ export class AuthService {
     public signOut(): void {
         this.emptyLocalStorage();
         // TODO: security redirect;
+    }
+
+    public async authenticate(): Promise<any> {
+        
     }
 }

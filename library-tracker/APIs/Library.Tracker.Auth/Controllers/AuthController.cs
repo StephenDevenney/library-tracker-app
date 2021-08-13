@@ -23,8 +23,8 @@ namespace Library.Tracker.API.Controllers
         public async Task<List<UserViewModel>> GetAllUsers() => await authHandler.GetAllUsers();
 
         [AllowAnonymous]
-        [HttpGet("authenticate")]
-        public async Task<UserViewModel> Authenticate([FromBody] UserViewModel user) => await authHandler.Authenticate(user.UserName);
+        [HttpGet("authenticate/{userName}")]
+        public async Task<UserViewModel> Authenticate(string userName) => await authHandler.Authenticate(userName);
         #endregion
     }
 }
