@@ -13,6 +13,7 @@ namespace Library.Tracker.Context
         { }
 
         public DbSet<NavMenuEntity> NavMenu { get; set; }
+        public DbSet<NavMenuRoleEntity> NavMenuRole { get; set; }
         public DbSet<UserEntity> User { get; set; }
         public DbSet<UserRoleEntity> UserRole { get; set; }
         public DbSet<AppSettingsEntity> AppSettings { get; set; }
@@ -25,8 +26,9 @@ namespace Library.Tracker.Context
             modelBuilder.Entity<UserEntity>(DBUser);
             modelBuilder.Entity<UserRoleEntity>(DBUserRole);
             modelBuilder.Entity<AppSettingsEntity>(DBAppSettings);
-            modelBuilder.Entity<ThemeEntity>(DBTheme);
+            modelBuilder.Entity<ThemeEntity>(DBTheme); 
             modelBuilder.Entity<AppIdleSecsEntity>(DBAppIdleSecs);
+            modelBuilder.Entity<NavMenuRoleEntity>(DBNavMenuRole);
             base.OnModelCreating(modelBuilder);
         }
 
@@ -85,6 +87,14 @@ namespace Library.Tracker.Context
             _.Property<int>(x => x.ThemeId).HasColumnName("FK_ThemeId");
             _.Property<int>(x => x.AppIdleSecsId).HasColumnName("FK_AppIdleSecsId");
             _.Property<bool>(x => x.NavMinimised).HasColumnName("NavMinimised");
+        }
+        private void DBNavMenuRole(EntityTypeBuilder<NavMenuRoleEntity> _)
+        {
+            _.ToTable("NavMenuRole", "security");
+            _.HasKey(x => x.NavMenuRoleId);
+            _.Property<int>(x => x.NavMenuRoleId).HasColumnName("NavMenuRoleId");
+            _.Property<int>(x => x.NavMenuId).HasColumnName("FK_NavMenuId");
+            _.Property<int>(x => x.UserRoleId).HasColumnName("FK_UserRoleId");
         }
     }
 }

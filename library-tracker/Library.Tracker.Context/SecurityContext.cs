@@ -22,12 +22,15 @@ namespace Library.Tracker.Context
         public async Task<List<NavMenuViewModel>> GetNavMenu()
         {
             UserEntity user = await this.globals.GetCurrentUser();
-            return await sqlContext.NavMenu.Select(dbResult => new NavMenuViewModel
-            {
-                NavMenuName = dbResult.NavMenuName,
-                NavMenuTitle = dbResult.NavMenuTitle,
-                NavMenuRoute = dbResult.NavMenuRoute
-            }).ToListAsync();
+            return await sqlContext.NavMenu.Join(sqlContext.NavMenuRole.Where(nmr => nmr.UserRoleId == user.UserRoleId),
+                nm => nm.NavMenuId,
+                nmr => nmr.NavMenuId,
+                (nm, nmr) => new NavMenuViewModel
+                {
+                    NavMenuName = nm.NavMenuName,
+                    NavMenuTitle = nm.NavMenuTitle,
+                    NavMenuRoute = nm.NavMenuRoute
+                }).ToListAsync();
         }
 
         public async Task<UserSettingsViewModel> GetUserSettings()
