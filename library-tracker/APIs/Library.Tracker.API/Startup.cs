@@ -67,6 +67,8 @@ namespace Library.Tracker.API
             });
 
             // Services & Context
+            services.AddScoped<IGlobals, Globals>();
+            services.AddHttpContextAccessor();
             services.AddScoped<ISecurityHandler, SecurityHandler>();
             services.AddScoped<ISecurityContext, SecurityContext>();
         }

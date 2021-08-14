@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Library.Tracker.Context.Interfaces;
 using Library.Tracker.Shared.Entities;
@@ -13,13 +11,17 @@ namespace Library.Tracker.Context
     public class SecurityContext: ISecurityContext
     {
         private readonly SqlContext sqlContext;
-        public SecurityContext(SqlContext sqlRepo)
+        private readonly IGlobals globals;
+        public SecurityContext(IGlobals _globals,
+                                SqlContext _sqlRepo)
         {
-            this.sqlContext = sqlRepo;
+            this.sqlContext = _sqlRepo;
+            this.globals = _globals;
         }
 
         public async Task<List<NavMenuViewModel>> GetNavMenu()
         {
+            UserEntity user = await this.globals.GetCurrentUser();
             return await sqlContext.NavMenu.Select(dbResult => new NavMenuViewModel
             {
                 NavMenuName = dbResult.NavMenuName,
@@ -28,9 +30,24 @@ namespace Library.Tracker.Context
             }).ToListAsync();
         }
 
-        public Task<UserSettingsViewModel> GetUserSettings()
+        public async Task<UserSettingsViewModel> GetUserSettings()
         {
-            return null;
+            UserEntity user = await this.globals.GetCurrentUser();
+            return await sqlContext.AppSettings.Where(u => u.UserId == user.UserId)
+                .Join(sqlContext.Theme,
+                    appSettings => appSettings.AppSettingsId,
+                    theme => theme.ThemeId,
+                    (appSettings, theme) => new { appSettings, theme })
+                .Join(sqlContext.AppIdleSecs,
+                        r2 => r2.appSettings.AppSettingsId,
+                        appIdleSecs => appIdleSecs.AppIdleSecsId,
+                        (r2, appIdleSecs) => new UserSettingsViewModel
+                        {
+                            User = new UserViewModel { UserName = user.UserName, UserRole = new UserRoleViewModel { UserRoleId = user.UserRoleId, UserRoleName = user.UserRoleName }, Token = "" },
+                            Theme = new ThemeViewModel { ThemeName = r2.theme.ThemeName, ThemeClassName = r2.theme.ClassName },
+                            AppIdleSecs = new AppIdleSecsViewModel { IdleTime = appIdleSecs.IdleTime, Description = appIdleSecs.Description },
+                            NavMinimized = r2.appSettings.NavMinimised
+                        }).FirstOrDefaultAsync();
         }
     }
 }
