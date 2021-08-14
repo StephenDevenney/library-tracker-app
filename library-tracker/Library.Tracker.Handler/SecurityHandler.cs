@@ -19,5 +19,7 @@ namespace Library.Tracker.Handler
 
         public async Task<List<NavMenuViewModel>> GetNavMenu() => await securityRepo.GetNavMenu();
 
+        public async Task<UserSettingsViewModel> GetUserSettings() => await securityRepo.GetUserSettings();
+
     }
 }

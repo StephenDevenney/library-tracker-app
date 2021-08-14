@@ -9,5 +9,6 @@ namespace Library.Tracker.Handler.Interfaces
     public interface ISecurityHandler
     {
         public Task<List<NavMenuViewModel>> GetNavMenu();
+        public Task<UserSettingsViewModel> GetUserSettings();
     }
 }

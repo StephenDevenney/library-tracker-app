@@ -21,6 +21,10 @@ namespace Library.Tracker.API.Controllers
         [Authorize(Roles = SecureRole.Admin + "," + SecureRole.User)]
         [HttpGet("nav-menu")]
         public async Task<List<NavMenuViewModel>> GetNavMenu() => await securityHandler.GetNavMenu();
+
+        [Authorize(Roles = SecureRole.Admin + "," + SecureRole.User)]
+        [HttpGet("user-settings")]
+        public async Task<UserSettingsViewModel> GetUserSettings() => await securityHandler.GetUserSettings();
         #endregion
     }
 }

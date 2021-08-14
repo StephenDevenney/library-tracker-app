@@ -27,5 +27,10 @@ namespace Library.Tracker.Context
                 NavMenuRoute = dbResult.NavMenuRoute
             }).ToListAsync();
         }
+
+        public Task<UserSettingsViewModel> GetUserSettings()
+        {
+            return null;
+        }
     }
 }
