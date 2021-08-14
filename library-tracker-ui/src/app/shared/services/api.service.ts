@@ -10,9 +10,9 @@ export class APIService {
                 private http: HttpClient) {}
 
     public async loadApplication(): Promise<any> {
-        return this.http.get('/assets/appsettings.json')
+        return await this.http.get('/assets/appsettings.json')
                         .pipe(map((res: any) => res))
-                        .pipe(switchMap((res: Config) => {
+                        .pipe(switchMap(async (res: Config) => {
                             this.globals.config.hubName = res.hubName;
                             this.globals.config.appApiUrl = res.appApiUrl;
                             this.globals.config.authApiUrl = res.appApiUrl;
@@ -22,7 +22,7 @@ export class APIService {
                                 TODO: Check localStorage for jwtToken here.
                             */
 
-                            return this.http.get(this.globals.config.authApiUrl + "security/config-settings").pipe(map(r => r));
+                            return await this.http.get(this.globals.config.authApiUrl + "security/user-settings").pipe(map(r => r)).toPromise();
                         })).toPromise().catch((err: any) => {
                              this.globals.seriousErrorMessage = err;
                         }).then((res: any) => {
@@ -46,7 +46,7 @@ export class APIService {
     }
 
     public async authenticateUserName(userName: string): Promise<any> {
-        return this.http.get(this.globals.config.authApiUrl + "security/authenticate/" + userName).toPromise();
+        return await this.http.get(this.globals.config.authApiUrl + "security/authenticate/" + userName).toPromise();
     }
 }
 
