@@ -1,4 +1,4 @@
-﻿CREATE TABLE [security].[NavMenu]
+﻿CREATE TABLE [enum].[NavMenu]
 (
 	[NavMenuId] INT NOT NULL PRIMARY KEY, 
     [NavMenuName] NVARCHAR(50) NOT NULL, 

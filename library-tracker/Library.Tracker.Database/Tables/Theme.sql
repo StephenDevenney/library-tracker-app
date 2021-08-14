@@ -1,0 +1,6 @@
+﻿CREATE TABLE [enum].[Theme]
+(
+	[ThemeId] INT NOT NULL PRIMARY KEY,
+	[ThemeName] NVARCHAR(50) NOT NULL, 
+	[ClassName] NVARCHAR(50) NOT NULL
+)

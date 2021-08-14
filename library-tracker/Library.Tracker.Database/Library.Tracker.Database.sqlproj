@@ -74,6 +74,9 @@
     <Build Include="Tables\User.sql" />
     <Build Include="Schemas\enum.sql" />
     <Build Include="Tables\UserRole.sql" />
+    <Build Include="Tables\AppSettings.sql" />
+    <Build Include="Tables\AppIdleSecs.sql" />
+    <Build Include="Tables\Theme.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Library.Tracker.Database.refactorlog" />
