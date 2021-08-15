@@ -55,6 +55,18 @@
     background-color: darken($standard-primary, 2%);
     color: $standard-primary-text;
 
+    .primary-bg {
+        background-color: darken($standard-primary, 2%);
+    }
+
+    .secondary-bg {
+        background-color: darken($standard-secondary, 2%);
+    }
+
+    .tertiary-bg {
+        background-color: darken($standard-tertiary, 2%);
+    }
+
     .pi {
         color: lighten($standard-secondary, 20%);
         &:hover {

@@ -72,6 +72,18 @@
         background-color: darken($dark-primary, 6%);
     }
 
+    .primary-bg {
+        background-color: darken($dark-primary, 2%);
+    }
+
+    .secondary-bg {
+        background-color: darken($dark-secondary, 2%);
+    }
+
+    .tertiary-bg {
+        background-color: darken($dark-tertiary, 2%);
+    }
+
     // ## Page
     .page-header {
         border-bottom: 0.1rem solid darken($dark-primary, 20%);

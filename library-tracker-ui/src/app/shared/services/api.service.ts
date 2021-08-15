@@ -4,7 +4,6 @@ import { map, switchMap } from 'rxjs/operators';
 import { Globals } from '../classes/globals';
 import { Config } from '../classes/config';
 import { AuthService } from './auth.service';
-import { GlobalsViewModel } from '../classes/globalsViewModel';
 
 @Injectable()
 export class APIService {
@@ -20,10 +19,11 @@ export class APIService {
                             this.globals.config.appApiUrl = res.appApiUrl;
                             this.globals.config.authApiUrl = res.appApiUrl;
                             this.globals.config.securityRedirectUrl = res.securityRedirectUrl;
+                            this.globals.settings.theme = res.defaultTheme;
                             
                             if(!this.authService.isAuthenticated())
                                 await this.authService.signOut();
-
+                            
                             return await this.http.get(this.globals.config.authApiUrl + "security/user-settings").pipe(map(r => r)).toPromise();
                         })).toPromise().catch((err: any) => {
                              this.globals.seriousErrorMessage = err;

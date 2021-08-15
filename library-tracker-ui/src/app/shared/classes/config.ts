@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Theme } from './user-settings';
 
 @Injectable()
 export class Config {
@@ -6,6 +7,7 @@ export class Config {
     public appApiUrl: string = "";
     public authApiUrl: string = "";
     public securityRedirectUrl: string = "";
+    public defaultTheme: Theme = new Theme;
 }
 
 
