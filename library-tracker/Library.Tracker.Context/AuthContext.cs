@@ -6,7 +6,6 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Library.Tracker.Context.Interfaces;
-using Library.Tracker.Shared.Entities;
 using Library.Tracker.Shared.Security;
 using Library.Tracker.Shared.ViewModels;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +16,7 @@ namespace Library.Tracker.Context
 {
     public class AuthContext: IAuthContext
     {
+        #region CONSTRUCTOR
         private readonly SqlContext sqlContext;
         private readonly AppSettings config;
         public AuthContext(SqlContext sqlRepo, IOptions<AppSettings> configSettings)
@@ -24,7 +24,9 @@ namespace Library.Tracker.Context
             this.sqlContext = sqlRepo;
             this.config = configSettings.Value;
         }
+        #endregion
 
+        #region GET
         public async Task<UserViewModel> Authenticate(string username)
         {
             /* 
@@ -93,5 +95,14 @@ namespace Library.Tracker.Context
                     }
                 ).FirstOrDefaultAsync();
         }
+        #endregion
+
+        #region PUT 
+
+        #endregion
+
+        #region POST
+
+        #endregion
     }
 }

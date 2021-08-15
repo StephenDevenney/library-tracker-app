@@ -1,17 +1,17 @@
 ﻿using Library.Tracker.Shared.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Library.Tracker.Context
 {
     public class SqlContext : DbContext
     {
+        #region CONSTRUCTOR
         public SqlContext(DbContextOptions<SqlContext> options): base(options)
         { }
+        #endregion
 
+        #region DBSET
         public DbSet<NavMenuEntity> NavMenu { get; set; }
         public DbSet<NavMenuRoleEntity> NavMenuRole { get; set; }
         public DbSet<UserEntity> User { get; set; }
@@ -19,7 +19,9 @@ namespace Library.Tracker.Context
         public DbSet<AppSettingsEntity> AppSettings { get; set; }
         public DbSet<AppIdleSecsEntity> AppIdleSecs { get; set; }
         public DbSet<ThemeEntity> Theme { get; set; }
+        #endregion
 
+        #region MODELBUILDER
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<NavMenuEntity>(DBNavMenu);
@@ -31,8 +33,9 @@ namespace Library.Tracker.Context
             modelBuilder.Entity<NavMenuRoleEntity>(DBNavMenuRole);
             base.OnModelCreating(modelBuilder);
         }
+        #endregion
 
-        // Enums
+        #region ENUM
         private void DBTheme(EntityTypeBuilder<ThemeEntity> _)
         {
             _.ToTable("Theme", "enum");
@@ -68,8 +71,9 @@ namespace Library.Tracker.Context
             _.Property<int>(x => x.UserRoleId).HasColumnName("UserRoleId");
             _.Property<string>(x => x.RoleName).HasColumnName("RoleName");
         }
+        #endregion
 
-        // Security
+        #region SECURITY
         private void DBUser(EntityTypeBuilder<UserEntity> _)
         {
             _.ToTable("User", "security");
@@ -96,5 +100,6 @@ namespace Library.Tracker.Context
             _.Property<int>(x => x.NavMenuId).HasColumnName("FK_NavMenuId");
             _.Property<int>(x => x.UserRoleId).HasColumnName("FK_UserRoleId");
         }
+        #endregion
     }
 }

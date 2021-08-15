@@ -10,6 +10,7 @@ namespace Library.Tracker.Context
 {
     public class SecurityContext: ISecurityContext
     {
+        #region CONSTRUCTOR
         private readonly SqlContext sqlContext;
         private readonly IGlobals globals;
         public SecurityContext(IGlobals _globals,
@@ -18,6 +19,7 @@ namespace Library.Tracker.Context
             this.sqlContext = _sqlRepo;
             this.globals = _globals;
         }
+        #endregion
 
         #region GET
         public async Task<List<NavMenuViewModel>> GetNavMenu()

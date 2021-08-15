@@ -9,6 +9,7 @@ namespace Library.Tracker.Context
 {
     public class Globals: IGlobals
     {
+        #region CONSTRUCTOR
         private readonly IHttpContextAccessor httpAccess;
         private readonly SqlContext sqlContext;
         public Globals(IHttpContextAccessor _httpAccess,
@@ -17,6 +18,7 @@ namespace Library.Tracker.Context
             this.httpAccess = _httpAccess;
             this.sqlContext = sqlRepo;
         }
+        #endregion
 
         #region GET
         public async Task<UserEntity> GetCurrentUser()
@@ -41,6 +43,14 @@ namespace Library.Tracker.Context
             UserEntity user = await this.GetCurrentUser();
             return user.UserId;
         }
+        #endregion
+
+        #region PUT
+
+        #endregion
+
+        #region POST
+
         #endregion
     }
 }

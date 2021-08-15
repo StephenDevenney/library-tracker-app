@@ -26,5 +26,13 @@ namespace Library.Tracker.API.Controllers
         [HttpGet("authenticate/{userName}")]
         public async Task<UserViewModel> Authenticate(string userName) => await authHandler.Authenticate(userName);
         #endregion
+
+        #region PUT
+
+        #endregion
+
+        #region POST
+
+        #endregion
     }
 }
