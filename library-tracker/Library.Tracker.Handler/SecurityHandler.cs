@@ -25,7 +25,7 @@ namespace Library.Tracker.Handler
         #endregion
 
         #region PUT
-        public async Task<ThemeViewModel> UpdateSelectedTheme(ThemeViewModel theme) => await securityRepo.UpdateSelectedTheme(theme);
+        public async Task<UserSettingsViewModel> UpdateSettings(UserSettingsViewModel settings) => await securityRepo.UpdateSettings(settings);
         #endregion
 
         #region POST

@@ -9,6 +9,6 @@ namespace Library.Tracker.Shared.ViewModels
         public UserViewModel User { get; set; }
         public ThemeViewModel Theme { get; set; }
         public AppIdleSecsViewModel AppIdleSecs { get; set; }
-        public bool NavMinimized { get; set; }
+        public bool NavMinimised { get; set; }
     }
 }

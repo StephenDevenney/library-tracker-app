@@ -13,7 +13,7 @@ namespace Library.Tracker.Handler.Interfaces
         #endregion
 
         #region PUT
-        public Task<ThemeViewModel> UpdateSelectedTheme(ThemeViewModel theme);
+        public Task<UserSettingsViewModel> UpdateSettings(UserSettingsViewModel settings);
         #endregion
 
         #region POST

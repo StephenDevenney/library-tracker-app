@@ -11,11 +11,13 @@ namespace Library.Tracker.API.Controllers
     [Route("Security")]
     public class SecurityController : ControllerBase
     {
+        #region CONSTRUCTOR
         private readonly ISecurityHandler securityHandler;
         public SecurityController(ISecurityHandler securityHandler)
         {
             this.securityHandler = securityHandler;
         }
+        #endregion
 
         #region GET
         [Authorize(Roles = SecureRole.Admin + "," + SecureRole.User)]
@@ -33,8 +35,8 @@ namespace Library.Tracker.API.Controllers
 
         #region PUT 
         [Authorize(Roles = SecureRole.Admin + "," + SecureRole.User)]
-        [HttpPut("update-theme")]
-        public async Task<ThemeViewModel> UpdateSelectedTheme([FromBody] ThemeViewModel theme) => await securityHandler.UpdateSelectedTheme(theme);
+        [HttpPut("save-settings")]
+        public async Task<UserSettingsViewModel> UpdateSettings([FromBody] UserSettingsViewModel settings) => await securityHandler.UpdateSettings(settings);
         #endregion
 
         #region POST

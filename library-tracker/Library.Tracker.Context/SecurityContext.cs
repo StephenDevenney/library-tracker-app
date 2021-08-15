@@ -51,8 +51,8 @@ namespace Library.Tracker.Context
                         {
                             User = new UserViewModel { UserName = user.UserName, UserRole = new UserRoleViewModel { UserRoleId = user.UserRoleId, UserRoleName = user.UserRoleName }, Token = "", IsAuthenticated = user.IsAuthenticated },
                             Theme = new ThemeViewModel { ThemeId = r2.theme.ThemeId, ThemeName = r2.theme.ThemeName, ThemeClassName = r2.theme.ClassName },
-                            AppIdleSecs = new AppIdleSecsViewModel { IdleTime = appIdleSecs.IdleTime, Description = appIdleSecs.Description },
-                            NavMinimized = r2.appSettings.NavMinimised
+                            AppIdleSecs = new AppIdleSecsViewModel { AppIdleSecsId = appIdleSecs.AppIdleSecsId, IdleTime = appIdleSecs.IdleTime, Description = appIdleSecs.Description },
+                            NavMinimised = r2.appSettings.NavMinimised
                         }).FirstOrDefaultAsync();
         }
 
@@ -63,11 +63,13 @@ namespace Library.Tracker.Context
         #endregion
 
         #region PUT
-        public async Task<ThemeViewModel> UpdateSelectedTheme(ThemeViewModel theme)
+        public async Task<UserSettingsViewModel> UpdateSettings(UserSettingsViewModel settings)
         {
             UserEntity user = await this.globals.GetCurrentUser();
             AppSettingsEntity asE = await this.sqlContext.AppSettings.Where(u => u.UserId == user.UserId).FirstOrDefaultAsync();
-            asE.ThemeId = theme.ThemeId;
+            asE.ThemeId = settings.Theme.ThemeId;
+            asE.AppIdleSecsId = settings.AppIdleSecs.AppIdleSecsId;
+            asE.NavMinimised = settings.NavMinimised;
             this.sqlContext.Attach(asE);
             await sqlContext.SaveChangesAsync();
             return null;

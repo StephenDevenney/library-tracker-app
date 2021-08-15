@@ -11,11 +11,13 @@ namespace Library.Tracker.API.Controllers
     [Route("Auth")]
     public class AuthController : ControllerBase
     {
+        #region CONSTRUCTOR
         private readonly IAuthHandler authHandler;
         public AuthController(IAuthHandler authHandler)
         {
             this.authHandler = authHandler;
         }
+        #endregion
 
         #region GET
         [Authorize(Roles = SecureRole.Admin)]

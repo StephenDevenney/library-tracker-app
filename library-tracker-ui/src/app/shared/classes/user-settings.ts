@@ -16,6 +16,7 @@ export class Theme {
 
 @Injectable()
 export class AppIdleSecs {
+    public appIdleSecsId: number = 0;
     public idleTime: number = 0;
     public description: string = "";
 }
