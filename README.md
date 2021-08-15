@@ -10,3 +10,4 @@ Simple book tracker app to keep track of read books, created for demonstration p
 
 ## Security
 Only uses username for authentication as there is no need for a password.
+Uses JWT bearer token for role authorisation.

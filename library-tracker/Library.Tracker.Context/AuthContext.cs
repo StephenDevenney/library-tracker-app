@@ -61,6 +61,7 @@ namespace Library.Tracker.Context
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Token = tokenHandler.WriteToken(token);
+            user.IsAuthenticated = true;
 
             return user;
         }

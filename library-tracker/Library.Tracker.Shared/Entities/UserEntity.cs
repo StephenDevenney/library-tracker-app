@@ -10,5 +10,6 @@ namespace Library.Tracker.Shared.Entities
         public int UserRoleId { get; set; }
         public string UserName { get; set; }
         public string UserRoleName { get; set; }
+        public bool IsAuthenticated { get; set; }
     }
 }

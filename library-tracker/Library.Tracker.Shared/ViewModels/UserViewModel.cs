@@ -12,5 +12,6 @@ namespace Library.Tracker.Shared.ViewModels
         public string Token { get; set; }
         [Required]
         public UserRoleViewModel UserRole { get; set; }
+        public bool IsAuthenticated { get; set; }
     }
 }

@@ -3,7 +3,6 @@ using Library.Tracker.Handler.Interfaces;
 using Library.Tracker.Context;
 using Library.Tracker.Context.Interfaces;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

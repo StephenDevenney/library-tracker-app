@@ -46,7 +46,7 @@ namespace Library.Tracker.Context
                         appIdleSecs => appIdleSecs.AppIdleSecsId,
                         (r2, appIdleSecs) => new UserSettingsViewModel
                         {
-                            User = new UserViewModel { UserName = user.UserName, UserRole = new UserRoleViewModel { UserRoleId = user.UserRoleId, UserRoleName = user.UserRoleName }, Token = "" },
+                            User = new UserViewModel { UserName = user.UserName, UserRole = new UserRoleViewModel { UserRoleId = user.UserRoleId, UserRoleName = user.UserRoleName }, Token = "", IsAuthenticated = user.IsAuthenticated },
                             Theme = new ThemeViewModel { ThemeName = r2.theme.ThemeName, ThemeClassName = r2.theme.ClassName },
                             AppIdleSecs = new AppIdleSecsViewModel { IdleTime = appIdleSecs.IdleTime, Description = appIdleSecs.Description },
                             NavMinimized = r2.appSettings.NavMinimised

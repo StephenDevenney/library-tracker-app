@@ -29,7 +29,8 @@ namespace Library.Tracker.Context
                         UserId = u.UserId,
                         UserName = u.UserName,
                         UserRoleId = ur.UserRoleId,
-                        UserRoleName = ur.RoleName
+                        UserRoleName = ur.RoleName,
+                        IsAuthenticated = this.httpAccess.HttpContext.User.Identity.IsAuthenticated
                     }
                 ).FirstOrDefaultAsync();
         }
