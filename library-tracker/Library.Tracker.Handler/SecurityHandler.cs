@@ -17,9 +17,21 @@ namespace Library.Tracker.Handler
             this.securityRepo = securityRepo;
         }
 
+        #region GET
         public async Task<List<NavMenuViewModel>> GetNavMenu() => await securityRepo.GetNavMenu();
 
         public async Task<UserSettingsViewModel> GetUserSettings() => await securityRepo.GetUserSettings();
+
+        public async Task<List<ThemeViewModel>> GetThemes() => await securityRepo.GetThemes();
+        #endregion
+
+        #region PUT
+        public async Task<ThemeViewModel> UpdateSelectedTheme(ThemeViewModel theme) => await securityRepo.UpdateSelectedTheme(theme);
+        #endregion
+
+        #region POST
+
+        #endregion
 
     }
 }

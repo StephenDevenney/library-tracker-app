@@ -18,6 +18,7 @@ namespace Library.Tracker.Context
             this.sqlContext = sqlRepo;
         }
 
+        #region GET
         public async Task<UserEntity> GetCurrentUser()
         {
             return await sqlContext.User.Where(u => u.UserName == this.httpAccess.HttpContext.User.Identity.Name)
@@ -34,5 +35,12 @@ namespace Library.Tracker.Context
                     }
                 ).FirstOrDefaultAsync();
         }
+
+        public async Task<int> GetUserId()
+        {
+            UserEntity user = await this.GetCurrentUser();
+            return user.UserId;
+        }
+        #endregion
     }
 }

@@ -6,5 +6,6 @@ namespace Library.Tracker.Context.Interfaces
     public interface IGlobals
     {
         public Task<UserEntity> GetCurrentUser();
+        public Task<int> GetUserId();
     }
 }

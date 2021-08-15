@@ -6,7 +6,18 @@ namespace Library.Tracker.Context.Interfaces
 {
     public interface ISecurityContext
     {
+        #region GET
         public Task<List<NavMenuViewModel>> GetNavMenu();
         public Task<UserSettingsViewModel> GetUserSettings();
+        public Task<List<ThemeViewModel>> GetThemes();
+        #endregion
+
+        #region PUT
+        public Task<ThemeViewModel> UpdateSelectedTheme(ThemeViewModel theme);
+        #endregion
+
+        #region POST
+
+        #endregion
     }
 }
