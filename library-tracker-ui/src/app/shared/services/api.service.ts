@@ -4,6 +4,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { Globals } from '../classes/globals';
 import { Config } from '../classes/config';
 import { AuthService } from './auth.service';
+import { GlobalsViewModel } from '../classes/globalsViewModel';
 
 @Injectable()
 export class APIService {
@@ -33,7 +34,7 @@ export class APIService {
                                     this.globals.user.userName = res.user.userName;
                                     this.globals.user.userRole = res.user.userRole;
                                     this.globals.user.isAuthenticated = res.user.isAuthenticated;
-
+                                    
                                     this.globals.settings.appIdleSecs = res.appIdleSecs;
                                     this.globals.settings.navMinimised = res.navMinimised;
                                     this.globals.settings.theme = res.theme;

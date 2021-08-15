@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Globals, NavPage } from 'src/app/shared/classes/globals';
+import { Globals } from 'src/app/shared/classes/globals';
 
 @Injectable()
 export class PageService {

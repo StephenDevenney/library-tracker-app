@@ -18,7 +18,7 @@ export class AppComponent {
               private titleService: Title,
               private router: Router,
               private authService: AuthService,
-              private route: ActivatedRoute,) {}
+              private route: ActivatedRoute) {}
 
     public async loadApplication() {
       await this.apiService.loadApplication().then(() => {

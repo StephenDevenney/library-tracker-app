@@ -1,6 +1,6 @@
 <ngx-ui-loader></ngx-ui-loader>
 <div *ngIf="isLoaded">
-  <div>
+  <div [ngClass]="globals.config.theme.themeClassName + ' app-container'">
     <div class="app-main-container">
       <div class="app-router">
         <page-header *ngIf="globals.isSignedIn"></page-header>
