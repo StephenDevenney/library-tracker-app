@@ -1,8 +1,8 @@
 <div class="page-header" [ngClass]="headerType">
     <div class="btn-nav-bar col-6 pl-0 pr-0 h-100">
         <div *ngFor="let navMenu of navigationMenu; let i = index">
-            <button class="btn btn-nav-link d-flex align-items-center justify-content-center p-4 w-100" (click)="navToPage(navMenu);" title="{{ navMenu.navTitle }}">
-                <span class="w-100">{{ navMenu.navName }}</span>
+            <button class="btn btn-nav-link d-flex align-items-center justify-content-center p-4 w-100" (click)="navToPage(navMenu);" title="{{ navMenu.navMenuTitle }}">
+                <span class="w-100">{{ navMenu.navMenuName }}</span>
             </button>
         </div>
     </div>

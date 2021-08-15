@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, data: {page: 'home'} },
   { path: 'sign-in', component: SignInComponent, data: {page: 'sign-in'} },
   { path: 'settings', component: SettingsComponent, data: {page: 'settings'} },
-  { path: '**', component: SettingsComponent, redirectTo:'sign-in', data: {page: 'sign-in'} }
+  { path: '**', redirectTo:'sign-in', data: {page: 'sign-in'} }
 ];
 
 @NgModule({

@@ -27,6 +27,7 @@ namespace Library.Tracker.API
         {
             services.AddControllersWithViews();
 
+            #region JWT
             // JWT Configuration
             var appSettingsSection = Configuration.GetSection("App");
             services.Configure<AppSettings>(appSettingsSection);
@@ -51,37 +52,49 @@ namespace Library.Tracker.API
                     ValidateAudience = false
                 };
             });
+            #endregion
 
+            #region USERROLES
             // Authorisation
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
                 options.AddPolicy("User", policy => policy.RequireRole("User"));
             });
+            #endregion
 
+            #region EFCORE
             // EfCore
             services.AddDbContextPool<SqlContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("AppDB"));
             });
+            #endregion
 
+            #region SERVICES
             // Services & Context
             services.AddScoped<IGlobals, Globals>();
             services.AddHttpContextAccessor();
             services.AddScoped<ISecurityHandler, SecurityHandler>();
             services.AddScoped<ISecurityContext, SecurityContext>();
+            #endregion
+
+            #region CORS
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                        builder => builder.WithOrigins(appSettings.PortUrlCors.Split(","))
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
+            });
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
             app.UseRouting();
-            // global cors policy
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
-
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => {

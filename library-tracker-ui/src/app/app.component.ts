@@ -17,8 +17,10 @@ export class AppComponent {
               public globals: Globals,
               private titleService: Title,
               private router: Router,
-              private authService: AuthService,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute) {
+                
+                this.loadApplication();
+              }
 
     public async loadApplication() {
       await this.apiService.loadApplication().then(() => {

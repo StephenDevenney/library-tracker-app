@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/modules/sharedModule';
 import { SignInComponent } from './sign-in-page/signin.component';
+import { SignInService } from './signin.service';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,9 @@ import { SignInComponent } from './sign-in-page/signin.component';
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    SignInService
   ]
 })
 

@@ -17,10 +17,14 @@ import { ButtonModule } from 'primeng/button';
 import { TabViewModule } from 'primeng/tabview';
 import { ListboxModule } from 'primeng/listbox';
 import { InputTextModule } from 'primeng/inputtext';
+import { PageModule } from 'src/app/layout/page/page.module';
+import { PageHeaderComponent } from 'src/app/layout/page/page-header/page-header.component';
+import { PageComponent } from 'src/app/layout/page/page.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    PageModule,
     NgxUiLoaderModule,
     InputSwitchModule,
     ButtonModule,
@@ -30,6 +34,8 @@ import { InputTextModule } from 'primeng/inputtext';
     
   ],
   exports: [
+    PageComponent,
+    PageHeaderComponent,
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,

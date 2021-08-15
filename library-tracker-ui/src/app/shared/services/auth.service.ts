@@ -7,7 +7,6 @@ import { APIService } from './api.service';
 export class AuthService {
 
     constructor(private router: Router,
-                private apiService: APIService,
                 private globals: Globals){}
 
     public isAuthenticated(): boolean {
