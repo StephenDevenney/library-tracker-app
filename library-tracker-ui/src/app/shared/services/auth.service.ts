@@ -13,10 +13,8 @@ export class AuthService {
     public isAuthenticated(): boolean {
         var token = this.getToken();
 
-        if(!token){
+        if(!token)
             return false;
-            // TODO: security redirect;
-        }
 
         return true;
     }
@@ -25,18 +23,20 @@ export class AuthService {
         return localStorage.getItem("auth_token");
     }
 
-    public emptyLocalStorage(): void {
+    public async emptyLocalStorage(): Promise<void> {
         this.globals.isSignedIn = false;
+        this.globals.seriousErrorMessage = "";
         localStorage.removeItem("auth_token");
         localStorage.removeItem("current_page");
     }
 
-    public signOut(): void {
-        this.emptyLocalStorage();
-        // TODO: security redirect;
+    public async signOut(): Promise<void> {
+        await this.emptyLocalStorage();
+        await this.router.navigate([this.globals.config.securityRedirectUrl]);
     }
 
-    public async authenticate(): Promise<any> {
-        
+    public async updateAuthToken(token: string): Promise<void> {
+        localStorage.removeItem("auth_token");
+        localStorage.setItem("auth_token", "Bearer " + token);
     }
 }

@@ -3,11 +3,13 @@ import { Injectable } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
 import { Globals } from '../classes/globals';
 import { Config } from '../classes/config';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class APIService {
     constructor(private globals: Globals,
-                private http: HttpClient) {}
+                private http: HttpClient,
+                private authService: AuthService) {}
 
     public async loadApplication(): Promise<any> {
         return await this.http.get('/assets/appsettings.json')
@@ -18,21 +20,16 @@ export class APIService {
                             this.globals.config.authApiUrl = res.appApiUrl;
                             this.globals.config.securityRedirectUrl = res.securityRedirectUrl;
                             
-                            /* 
-                                TODO: Check localStorage for jwtToken here.
-                            */
+                            if(!this.authService.isAuthenticated())
+                                await this.authService.signOut();
 
                             return await this.http.get(this.globals.config.authApiUrl + "security/user-settings").pipe(map(r => r)).toPromise();
                         })).toPromise().catch((err: any) => {
                              this.globals.seriousErrorMessage = err;
                         }).then((res: any) => {
                             if(this.globals.seriousErrorMessage == "") {
-                                this.globals.isSignedIn = true;
-                                /* 
-                                TODO: update localStorage with jwtToken here.
-                                */
-
                                 if(res.user.isAuthenticated) {
+                                    this.globals.isSignedIn = true;
                                     this.globals.user.userName = res.user.userName;
                                     this.globals.user.userRole = res.user.userRole;
                                     this.globals.user.isAuthenticated = res.user.isAuthenticated;
@@ -41,7 +38,11 @@ export class APIService {
                                     this.globals.settings.navMinimised = res.navMinimised;
                                     this.globals.settings.theme = res.theme;
                                 }
+                                else
+                                    this.authService.signOut();
                             }
+                            else
+                                this.authService.signOut();
                         });
     }
 

@@ -7,8 +7,8 @@ export class UserSettings {
     public appIdleSecs: number = 0;
 }
 
+@Injectable()
 export class Theme {
-    public themeId: number = 0;
     public themeName: string = "";
     public themeClassName: string = "";
 }
