@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/modules/sharedModule';
 import { SettingsComponent } from './settings-page/settings.component';
+import { SettingsService } from './settings.service';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,9 @@ import { SettingsComponent } from './settings-page/settings.component';
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    SettingsService
   ]
 })
 

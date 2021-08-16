@@ -2,7 +2,6 @@ import { Component, Injector, Input, OnInit } from '@angular/core';
 import { HeaderType } from '../enums/header-type';
 import { BaseComponent } from '../../../shared/components/base.component';
 import { PageService } from '../page.service';
-import { Title } from '@angular/platform-browser';
 import { InputSwitch } from 'primeng/inputswitch';
 import { Theme } from 'src/app/shared/classes/user-settings';
 import { NavPage } from 'src/app/shared/classes/globals';
@@ -31,7 +30,6 @@ export class PageHeaderComponent extends BaseComponent implements OnInit {
 
   constructor(private injector: Injector,
     private pageService: PageService,
-    private titleService: Title,
     private sharedService: SharedService) {
     super(injector);
    }
@@ -65,7 +63,7 @@ export class PageHeaderComponent extends BaseComponent implements OnInit {
 
   public async saveSettings(): Promise<void> {
     this.loader.start();
-    this.pageService.saveSettings().then(() => {
+    this.sharedService.saveSettings().then(() => {
       this.loader.stop();
     }).catch((err: any) => {
       this.loader.stop();

@@ -9,12 +9,7 @@ export class PageService {
                 private http: HttpClient){}
 
     public async getThemes(): Promise<any> {
-        return await this.http.get(this.globals.config.appApiUrl + "security/themes").toPromise();
-    }
-
-    public async saveSettings(): Promise<void> {
-        await this.http.put(this.globals.config.appApiUrl + "security/save-settings", JSON.stringify(this.globals.settings)).toPromise();
-        return;
+        return await this.http.get(this.globals.config.appApiUrl + "enum/themes").toPromise();
     }
 
     public async getNavMenu(): Promise<any> {

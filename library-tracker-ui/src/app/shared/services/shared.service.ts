@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -10,7 +11,8 @@ export class SharedService {
     constructor(private router: Router,
                 private globals: Globals,
                 private titleService: Title,
-                private authService: AuthService){}
+                private authService: AuthService,
+                private http: HttpClient){}
 
     public async navToPage(navMenu: NavPage): Promise<void> {
         if(navMenu.navMenuRoute != "" || navMenu.navMenuRoute != undefined) {
@@ -22,4 +24,9 @@ export class SharedService {
           });
         }   
     }
+
+    public async saveSettings(): Promise<void> {
+      await this.http.put(this.globals.config.appApiUrl + "security/save-settings", JSON.stringify(this.globals.settings)).toPromise();
+      return;
+  }
 }

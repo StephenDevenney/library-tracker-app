@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Globals } from './shared/classes/globals';
 import { APIService } from './shared/services/api.service';
@@ -9,7 +9,7 @@ import { SharedService } from './shared/services/shared.service';
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public title = 'Library-Tracker';
   public isLoaded = false;
 
@@ -17,10 +17,11 @@ export class AppComponent {
               public globals: Globals,
               private sharedService: SharedService,
               private authService: AuthService,
-              private route: ActivatedRoute) {
-                
-                this.loadApplication();
-              }
+              private route: ActivatedRoute) {}
+
+    async ngOnInit(): Promise<void> {
+      await this.loadApplication();
+    }
 
     public async loadApplication(): Promise<void> {
       await this.apiService.loadApplication().then(async () => {

@@ -1,3 +1,25 @@
-<page>
+<page *ngIf="isLoaded">
     <h2 class="p-4">Settings</h2>
+    <div class="row">
+        <div class="col-4">
+            <div class="d-flex justify-content-center">
+                <div>
+                    <h3>App Idle Time Out</h3>
+                    <div class="pt-3">
+                        <p-dropdown (onChange)="appIdleTimeChanged($event);" [options]="appIdleSecsEnum" [(ngModel)]="globals.settings.appIdleSecs" optionLabel="description"></p-dropdown>
+                    </div>
+                </div>         
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="d-flex justify-content-center">
+                <h3>Profile</h3>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="d-flex justify-content-center">
+                <h3>Sign Out</h3>
+            </div>
+        </div>
+    </div>
 </page>
