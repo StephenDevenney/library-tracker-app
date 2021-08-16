@@ -18,6 +18,6 @@ export class PageService {
     }
 
     public async getNavMenu(): Promise<any> {
-        return await this.http.get(this.globals.config.appApiUrl + "security/navMenu").toPromise();
+        return await this.http.get(this.globals.config.appApiUrl + "security/nav-menu").toPromise();
     }
 }
