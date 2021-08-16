@@ -16,6 +16,10 @@ import { LayoutModule } from './layout/layout.module';
 import { HomeModule } from './modules/home/home.module';
 import { SignInModule } from './modules/sign-in/signin.module';
 import { SettingsModule } from './modules/settings/settings.module';
+import { SharedService } from './shared/services/shared.service';
+import { AdminModule } from './modules/admin/admin.module';
+import { BooksModule } from './modules/books/books.module';
+import { ComicsModule } from './modules/comics/comics.module';
 
 /*
   bgs = bottomRight Small loader
@@ -49,6 +53,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     HomeModule,
     SignInModule,
     SettingsModule,
+    AdminModule,
+    BooksModule,
+    ComicsModule,
     SharedModule,
     HttpClientModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
@@ -62,7 +69,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     },
     APIService ,
     MessageService,
-    LoadingService
+    LoadingService,
+    SharedService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

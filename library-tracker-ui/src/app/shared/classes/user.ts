@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class User {
     public userName: string = "";
-    public Token: string = "";
+    public token: string = "";
     public userRole: UserRole = new UserRole;
     public isAuthenticated: boolean = false;
 }

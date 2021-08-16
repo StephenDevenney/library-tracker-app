@@ -17,14 +17,16 @@ export class APIService {
                         .pipe(switchMap(async (res: Config) => {
                             this.globals.config.hubName = res.hubName;
                             this.globals.config.appApiUrl = res.appApiUrl;
-                            this.globals.config.authApiUrl = res.appApiUrl;
+                            this.globals.config.authApiUrl = res.authApiUrl;
                             this.globals.config.securityRedirectUrl = res.securityRedirectUrl;
                             this.globals.settings.theme = res.defaultTheme;
+                            this.globals.currentPage = res.homePage;
                             
-                            if(!this.authService.isAuthenticated())
-                                await this.authService.signOut();
-                            
-                            return await this.http.get(this.globals.config.authApiUrl + "security/user-settings").pipe(map(r => r)).toPromise();
+                            if(!this.authService.hasAuthToken()) {
+                                return this.globals;
+                            }
+                            else
+                                return await this.http.get(this.globals.config.appApiUrl + "security/user-settings").pipe(map(r => r)).toPromise();     
                         })).toPromise().catch((err: any) => {
                              this.globals.seriousErrorMessage = err;
                         }).then((res: any) => {
@@ -45,10 +47,6 @@ export class APIService {
                             else
                                 this.authService.signOut();
                         });
-    }
-
-    public async authenticateUserName(userName: string): Promise<any> {
-        return await this.http.get(this.globals.config.authApiUrl + "security/authenticate/" + userName).toPromise();
     }
 }
 

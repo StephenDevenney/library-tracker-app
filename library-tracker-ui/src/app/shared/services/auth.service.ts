@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Globals } from '../classes/globals';
-import { APIService } from './api.service';
+import { Globals, NavPage } from '../classes/globals';
 
 @Injectable()
 export class AuthService {
@@ -9,7 +8,7 @@ export class AuthService {
     constructor(private router: Router,
                 private globals: Globals){}
 
-    public isAuthenticated(): boolean {
+    public hasAuthToken(): boolean {
         var token = this.getToken();
 
         if(!token)
@@ -20,6 +19,10 @@ export class AuthService {
 
     public getToken(): string | null {
         return localStorage.getItem("auth_token");
+    }
+
+    public getCurrentPage(): string | null {
+        return localStorage.getItem("current_page");
     }
 
     public async emptyLocalStorage(): Promise<void> {
@@ -37,5 +40,10 @@ export class AuthService {
     public async updateAuthToken(token: string): Promise<void> {
         localStorage.removeItem("auth_token");
         localStorage.setItem("auth_token", "Bearer " + token);
+    }
+
+    public async updateCurrentPage(page: NavPage): Promise<void> {
+        localStorage.removeItem("current_page");
+        localStorage.setItem("current_page", page.navMenuRoute);
     }
 }
