@@ -21,12 +21,11 @@ namespace Library.Tracker.API
         }
 
         public IConfiguration Configuration { get; }
+        private readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
             #region JWT
             // JWT Configuration
             var appSettingsSection = Configuration.GetSection("App");
@@ -82,19 +81,22 @@ namespace Library.Tracker.API
             #region CORS
             services.AddCors(options =>
             {
-                options.AddPolicy("CorsPolicy",
-                        builder => builder.WithOrigins(appSettings.PortUrlCors.Split(","))
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                        builder => builder.WithOrigins(appSettings.PortalUrlCors.Split(","))
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials());
             });
             #endregion
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
             app.UseRouting();
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => {

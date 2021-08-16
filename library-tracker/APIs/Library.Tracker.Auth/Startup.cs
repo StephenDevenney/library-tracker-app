@@ -6,6 +6,7 @@ using Library.Tracker.Shared.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,12 +23,12 @@ namespace Library.Tracker.Auth
         }
 
         public IConfiguration Configuration { get; }
+        private readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
+            #region JWT
             // JWT Configuration
             var appSettingsSection = Configuration.GetSection("App");
             services.Configure<AppSettings>(appSettingsSection);
@@ -52,34 +53,49 @@ namespace Library.Tracker.Auth
                     ValidateAudience = false
                 };
             });
+            #endregion
 
+            #region USERROLES
             // Authorisation
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
                 options.AddPolicy("User", policy => policy.RequireRole("User"));
             });
+            #endregion
 
+            #region EFCORE
             // EfCore
             services.AddDbContextPool<SqlContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("AppDB"));
             });
+            #endregion
 
+            #region SERVICES
             services.AddScoped<IAuthHandler, AuthHandler>();
             services.AddScoped<IAuthContext, AuthContext>();
+            #endregion
+
+            #region CORS
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                        builder => builder.WithOrigins(appSettings.PortalUrlCors.Split(","))
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
+            });
+            #endregion
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
             app.UseRouting();
-            // global cors policy
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
-
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => {

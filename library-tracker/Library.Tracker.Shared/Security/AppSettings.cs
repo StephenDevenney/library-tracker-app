@@ -6,9 +6,9 @@ namespace Library.Tracker.Shared.Security
 {
     public class AppSettings
     {
-        public string PortUrl { get; set; }
-        public string PortUrlCors { get; set; }
-        public string Enviroment { get; set; }
+        public string PortalUrl { get; set; }
+        public string PortalUrlCors { get; set; }
+        public string Environment { get; set; }
         public string Secret { get; set; }
     }
 }
