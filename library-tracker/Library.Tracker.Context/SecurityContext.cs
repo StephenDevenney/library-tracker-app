@@ -41,11 +41,11 @@ namespace Library.Tracker.Context
             UserEntity user = await this.globals.GetCurrentUser();
             return await sqlContext.AppSettings.Where(u => u.UserId == user.UserId)
                 .Join(sqlContext.Theme,
-                    appSettings => appSettings.AppSettingsId,
+                    appSettings => appSettings.ThemeId,
                     theme => theme.ThemeId,
                     (appSettings, theme) => new { appSettings, theme })
                 .Join(sqlContext.AppIdleSecs,
-                        r2 => r2.appSettings.AppSettingsId,
+                        r2 => r2.appSettings.AppIdleSecsId,
                         appIdleSecs => appIdleSecs.AppIdleSecsId,
                         (r2, appIdleSecs) => new UserSettingsViewModel
                         {
