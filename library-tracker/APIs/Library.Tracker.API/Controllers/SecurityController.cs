@@ -27,10 +27,6 @@ namespace Library.Tracker.API.Controllers
         [Authorize(Roles = SecureRole.Admin + "," + SecureRole.User)]
         [HttpGet("user-settings")]
         public async Task<UserSettingsViewModel> GetUserSettings() => await securityHandler.GetUserSettings();
-
-        [Authorize(Roles = SecureRole.Admin + "," + SecureRole.User)]
-        [HttpGet("themes")]
-        public async Task<List<ThemeViewModel>> GetThemes() => await securityHandler.GetThemes();
         #endregion
 
         #region PUT 

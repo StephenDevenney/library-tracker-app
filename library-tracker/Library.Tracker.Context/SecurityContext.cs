@@ -55,11 +55,6 @@ namespace Library.Tracker.Context
                             NavMinimised = r2.appSettings.NavMinimised
                         }).FirstOrDefaultAsync();
         }
-
-        public async Task<List<ThemeViewModel>> GetThemes()
-        {
-            return await sqlContext.Theme.Select(res => new ThemeViewModel { ThemeId = res.ThemeId, ThemeName = res.ThemeName, ThemeClassName = res.ClassName }).ToListAsync();
-        }
         #endregion
 
         #region PUT

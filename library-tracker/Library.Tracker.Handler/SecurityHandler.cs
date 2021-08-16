@@ -20,8 +20,6 @@ namespace Library.Tracker.Handler
         public async Task<List<NavMenuViewModel>> GetNavMenu() => await securityRepo.GetNavMenu();
 
         public async Task<UserSettingsViewModel> GetUserSettings() => await securityRepo.GetUserSettings();
-
-        public async Task<List<ThemeViewModel>> GetThemes() => await securityRepo.GetThemes();
         #endregion
 
         #region PUT

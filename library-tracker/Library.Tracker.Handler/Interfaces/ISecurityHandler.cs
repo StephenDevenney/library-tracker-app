@@ -9,7 +9,6 @@ namespace Library.Tracker.Handler.Interfaces
         #region GET
         public Task<List<NavMenuViewModel>> GetNavMenu();
         public Task<UserSettingsViewModel> GetUserSettings();
-        public Task<List<ThemeViewModel>> GetThemes();
         #endregion
 
         #region PUT

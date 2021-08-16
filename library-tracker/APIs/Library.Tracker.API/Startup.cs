@@ -76,6 +76,8 @@ namespace Library.Tracker.API
             services.AddHttpContextAccessor();
             services.AddScoped<ISecurityHandler, SecurityHandler>();
             services.AddScoped<ISecurityContext, SecurityContext>();
+            services.AddScoped<IEnumHandler, EnumHandler>();
+            services.AddScoped<IEnumContext, EnumContext>();
             #endregion
 
             #region CORS
