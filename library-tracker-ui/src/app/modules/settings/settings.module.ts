@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/modules/sharedModule';
 import { SettingsComponent } from './settings-page/settings.component';
 import { SettingsService } from './settings.service';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 
 @NgModule({
   declarations: [
@@ -11,7 +13,9 @@ import { SettingsService } from './settings.service';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    AvatarModule,
+    AvatarGroupModule
   ],
   exports: [
     RouterModule

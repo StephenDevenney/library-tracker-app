@@ -21,6 +21,8 @@ export class APIService {
                             this.globals.config.securityRedirectUrl = res.securityRedirectUrl;
                             this.globals.settings.theme = res.defaultTheme;
                             this.globals.currentPage = res.homePage;
+                            this.globals.config.homePage = res.homePage;
+                            this.globals.config.defaultTheme = res.defaultTheme;
                             
                             if(!this.authService.hasAuthToken()) {
                                 return this.globals;

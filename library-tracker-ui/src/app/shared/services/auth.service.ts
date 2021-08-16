@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Globals, NavPage } from '../classes/globals';
 
@@ -6,7 +7,8 @@ import { Globals, NavPage } from '../classes/globals';
 export class AuthService {
 
     constructor(private router: Router,
-                private globals: Globals){}
+                private globals: Globals,
+                private titleService: Title){}
 
     public hasAuthToken(): boolean {
         var token = this.getToken();
@@ -26,14 +28,24 @@ export class AuthService {
     }
 
     public async emptyLocalStorage(): Promise<void> {
-        this.globals.isSignedIn = false;
-        this.globals.seriousErrorMessage = "";
         localStorage.removeItem("auth_token");
         localStorage.removeItem("current_page");
     }
 
+    public async revertSettings(): Promise<void> {
+        this.globals.isSignedIn = false;
+        this.globals.seriousErrorMessage = "";
+        this.globals.currentPage = this.globals.config.homePage;
+        this.globals.previousPage = this.globals.config.homePage;
+        this.globals.settings.theme = this.globals.config.defaultTheme;
+        this.globals.user.token = "";
+        this.globals.user.isAuthenticated = false;
+        this.titleService.setTitle(this.globals.config.hubName + " - Sign In");
+    }
+
     public async signOut(): Promise<void> {
         await this.emptyLocalStorage();
+        await this.revertSettings();
         await this.router.navigate([this.globals.config.securityRedirectUrl]);
     }
 

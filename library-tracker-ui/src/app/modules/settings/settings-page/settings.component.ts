@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Injector, OnInit } from '@angular/core';
 import { AppIdleSecs } from 'src/app/shared/classes/user-settings';
 import { BaseComponent } from 'src/app/shared/components/base.component';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { SettingsService } from '../settings.service';
 
@@ -15,7 +16,8 @@ export class SettingsComponent extends BaseComponent implements OnInit {
   public appIdleSecsEnum: Array<AppIdleSecs> = new Array<AppIdleSecs>();
   constructor(private injector: Injector,
               private settingsService: SettingsService,
-              private sharedService: SharedService) {
+              private sharedService: SharedService,
+              private authService: AuthService) {
     super(injector);
   }
 
@@ -35,5 +37,9 @@ export class SettingsComponent extends BaseComponent implements OnInit {
     }).then((res: Array<AppIdleSecs>) => {
       this.appIdleSecsEnum = res;
     });
+  }
+
+  public async logOutUser(): Promise<void> {
+    this.authService.signOut();
   }
 }
