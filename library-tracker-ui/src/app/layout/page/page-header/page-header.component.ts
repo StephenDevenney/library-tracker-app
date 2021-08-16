@@ -6,6 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { InputSwitch } from 'primeng/inputswitch';
 import { Theme } from 'src/app/shared/classes/user-settings';
 import { NavPage } from 'src/app/shared/classes/globals';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'page-header',
@@ -30,7 +31,8 @@ export class PageHeaderComponent extends BaseComponent implements OnInit {
 
   constructor(private injector: Injector,
     private pageService: PageService,
-    private titleService: Title) {
+    private titleService: Title,
+    private sharedService: SharedService) {
     super(injector);
    }
 
@@ -71,14 +73,6 @@ export class PageHeaderComponent extends BaseComponent implements OnInit {
   }
 
   public async navToPage(navMenu: NavPage) {
-    if(navMenu.navMenuRoute != "" || navMenu.navMenuRoute != undefined) {
-      await this.router.navigate([navMenu.navMenuRoute]).then(() => {
-        this.titleService.setTitle(this.globals.config.hubName + " - " + navMenu.navMenuName);
-        this.globals.previousPage = this.globals.currentPage;
-        this.globals.currentPage = navMenu;
-      }).finally(() => {
-        this.pageService.saveSettings();
-      });
-    }   
+    this.sharedService.navToPage(navMenu); 
   }
 }
