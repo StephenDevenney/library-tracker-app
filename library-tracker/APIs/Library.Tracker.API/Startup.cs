@@ -10,6 +10,8 @@ using System.Text;
 using Library.Tracker.Shared.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Library.Tracker.Shared.ClientAPIs;
+using Library.Tracker.Shared.ClientAPIs.Interfaces;
 
 namespace Library.Tracker.API
 {
@@ -78,6 +80,7 @@ namespace Library.Tracker.API
             services.AddScoped<ISecurityContext, SecurityContext>();
             services.AddScoped<IEnumHandler, EnumHandler>();
             services.AddScoped<IEnumContext, EnumContext>();
+            services.AddHttpClient<IGoogleBooksAPI, GoogleBooksAPI>();
             #endregion
 
             #region CORS
