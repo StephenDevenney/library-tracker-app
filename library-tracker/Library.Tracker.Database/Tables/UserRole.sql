@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [enum].[UserRole]
 (
-	[UserRoleId] INT NOT NULL PRIMARY KEY, 
+	[UserRoleId] INT IDENTITY(1,1) PRIMARY KEY, 
     [RoleName] NVARCHAR(50) NOT NULL
 )

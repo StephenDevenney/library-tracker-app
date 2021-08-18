@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [security].[User]
 (
-	[UserId] INT NOT NULL PRIMARY KEY, 
+	[UserId] INT IDENTITY(1,1) PRIMARY KEY, 
     [FK_UserRoleId] INT NOT NULL, 
     [UserName] NVARCHAR(50) NOT NULL
 

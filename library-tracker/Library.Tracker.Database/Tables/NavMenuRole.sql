@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [security].[NavMenuRole]
 (
-	[NavMenuRoleId] INT NOT NULL PRIMARY KEY, 
+	[NavMenuRoleId] INT IDENTITY(1,1) PRIMARY KEY, 
     [FK_NavMenuId] INT NULL, 
     [FK_UserRoleId] INT NULL
 

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [security].[AppSettings]
 (
-	[AppSettingsId] INT NOT NULL PRIMARY KEY,
+	[AppSettingsId] INT IDENTITY(1,1) PRIMARY KEY,
 	[FK_UserId] INT NOT NULL, 
 	[FK_ThemeId] INT NOT NULL DEFAULT 1, 
 	[FK_AppIdleSecsId] INT NOT NULL,
