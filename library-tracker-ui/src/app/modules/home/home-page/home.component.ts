@@ -35,7 +35,6 @@ export class HomeComponent extends BaseComponent implements OnInit {
       if(res) {
         this.bookToDisplay = res;
         this.bookFound = true;
-        console.log(this.bookToDisplay);
       }
       else {
         this.messageService.add({severity:'info', summary:'0 Results', detail:'Failed to find book', life: 2600 });
@@ -45,6 +44,15 @@ export class HomeComponent extends BaseComponent implements OnInit {
   }
 
   public async addToLibrary(): Promise<void> {
-
+    this.loader.startBackground();
+    await this.homeService.addBookToCollection(this.bookToDisplay).then(() => { 
+      this.messageService.add({severity:'success', summary:'Book Added', detail:'Book Successfully Added To Your Personal Library', life: 2600 });
+    }).catch((err: HttpErrorResponse) => {
+      this.messageService.add({severity:'error', summary:'Error', detail:'Internal Server Error', life: 2600 }); 
+    }).finally(() => {
+      this.loader.stopBackground();
+      this.bookFound = false;
+      this.bookToDisplay = new Book;
+    });
   }
 }
