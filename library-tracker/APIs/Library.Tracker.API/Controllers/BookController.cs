@@ -1,4 +1,5 @@
-﻿using Library.Tracker.Shared.ClientAPIs.Interfaces;
+﻿using Library.Tracker.Handler.Interfaces;
+using Library.Tracker.Shared.ClientAPIs.Interfaces;
 using Library.Tracker.Shared.Security;
 using Library.Tracker.Shared.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -11,17 +12,17 @@ namespace Library.Tracker.API.Controllers
     public class BookController : ControllerBase
     {
         #region CONSTRUCTOR
-        private readonly IGoogleBooksAPI googleBooksAPI;
-        public BookController(IGoogleBooksAPI _googleBooksAPI)
+        private readonly IBookHandler bookHandler;
+        public BookController(IBookHandler bookHandler)
         {
-            this.googleBooksAPI = _googleBooksAPI;
+            this.bookHandler = bookHandler;
         }
         #endregion
 
         #region GET
         [Authorize(Roles = SecureRole.Admin + "," + SecureRole.User)]
         [HttpGet("book-isbn/{isbn}")]
-        public async Task<BookViewModel> GetBookByISBN(string isbn) => await googleBooksAPI.GetBookByISBN(isbn);
+        public async Task<BookViewModel> GetBookByISBN(string isbn) => await bookHandler.GetBookFromISBN(isbn);
         #endregion
 
         #region PUT
@@ -29,7 +30,9 @@ namespace Library.Tracker.API.Controllers
         #endregion
 
         #region POST
-
+        [Authorize(Roles = SecureRole.Admin + "," + SecureRole.User)]
+        [HttpPost("add")]
+        public async Task AddBookToCollection([FromBody] BookViewModel book) => await bookHandler.AddBookToCollection(book);
         #endregion
     }
 }

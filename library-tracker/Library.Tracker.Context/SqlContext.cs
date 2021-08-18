@@ -19,6 +19,8 @@ namespace Library.Tracker.Context
         public DbSet<AppSettingsEntity> AppSettings { get; set; }
         public DbSet<AppIdleSecsEntity> AppIdleSecs { get; set; }
         public DbSet<ThemeEntity> Theme { get; set; }
+        public DbSet<AuthorEntity> Author { get; set; }
+        public DbSet<BookEntity> Book { get; set; }
         #endregion
 
         #region MODELBUILDER
@@ -31,6 +33,8 @@ namespace Library.Tracker.Context
             modelBuilder.Entity<ThemeEntity>(DBTheme); 
             modelBuilder.Entity<AppIdleSecsEntity>(DBAppIdleSecs);
             modelBuilder.Entity<NavMenuRoleEntity>(DBNavMenuRole);
+            modelBuilder.Entity<AuthorEntity>(DBAuthor);
+            modelBuilder.Entity<BookEntity>(DBBook);
             base.OnModelCreating(modelBuilder);
         }
         #endregion
@@ -99,6 +103,30 @@ namespace Library.Tracker.Context
             _.Property<int>(x => x.NavMenuRoleId).HasColumnName("NavMenuRoleId");
             _.Property<int>(x => x.NavMenuId).HasColumnName("FK_NavMenuId");
             _.Property<int>(x => x.UserRoleId).HasColumnName("FK_UserRoleId");
+        }
+        #endregion
+
+        #region BOOK
+        private void DBAuthor(EntityTypeBuilder<AuthorEntity> _)
+        {
+            _.ToTable("Authors", "book");
+            _.HasKey(x => x.AuthorId);
+            _.Property<int>(x => x.AuthorId).HasColumnName("AuthorId").ValueGeneratedOnAdd();
+            _.Property<string>(x => x.AuthorName).HasColumnName("AuthorName");
+        }
+        private void DBBook(EntityTypeBuilder<BookEntity> _)
+        {
+            _.ToTable("BookCollection", "book");
+            _.HasKey(x => x.BookId);
+            _.Property<int>(x => x.BookId).HasColumnName("BookId");
+            _.Property<string>(x => x.BookName).HasColumnName("BookName");
+            _.Property<string>(x => x.BookSubTitle).HasColumnName("BookSubTitle");
+            _.Property<string>(x => x.ISBN).HasColumnName("ISBN");
+            _.Property<string>(x => x.Description).HasColumnName("Description");
+            _.Property<int>(x => x.PageCount).HasColumnName("PageCount");
+            _.Property<string>(x => x.ImageLinkSmall).HasColumnName("ImageLinkSmall");
+            _.Property<string>(x => x.ImageLinkStandard).HasColumnName("ImageLinkStandard");
+            _.Property<string>(x => x.AuthorIds).HasColumnName("AuthorIds");
         }
         #endregion
     }

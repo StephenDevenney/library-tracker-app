@@ -80,6 +80,8 @@ namespace Library.Tracker.API
             services.AddScoped<ISecurityContext, SecurityContext>();
             services.AddScoped<IEnumHandler, EnumHandler>();
             services.AddScoped<IEnumContext, EnumContext>();
+            services.AddScoped<IBookHandler, BookHandler>();
+            services.AddScoped<IBookContext, BookContext>();
             services.AddHttpClient<IGoogleBooksAPI, GoogleBooksAPI>();
             #endregion
 
