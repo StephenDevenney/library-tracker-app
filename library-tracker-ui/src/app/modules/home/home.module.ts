@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/modules/sharedModule';
 import { HomeComponent } from './home-page/home.component';
+import { HomeService } from './home.service';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,9 @@ import { HomeComponent } from './home-page/home.component';
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    HomeService
   ]
 })
 
