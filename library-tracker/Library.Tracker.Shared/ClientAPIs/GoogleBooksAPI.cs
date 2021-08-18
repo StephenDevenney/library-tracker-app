@@ -1,5 +1,5 @@
 ﻿using Library.Tracker.Shared.ClientAPIs.Interfaces;
-using Library.Tracker.Shared.Entities;
+using System.Collections.Generic;
 using Library.Tracker.Shared.ViewModels;
 using Newtonsoft.Json;
 using System.Net.Http;
@@ -38,7 +38,7 @@ namespace Library.Tracker.Shared.ClientAPIs
             BookViewModel bookVM = new BookViewModel {
                 Title = new Titles { BookName = bookInfo.Title ?? "", BookSubTitle = bookInfo.Subtitle ?? "" } ?? new Titles { BookName = "", BookSubTitle = ""},
                 ISBN = bookInfo.IndustryIdentifiers[1].Identifier ?? "",
-                Authors = (string[])bookInfo.Authors ?? new string[] { },
+                Authors = new List<string>(bookInfo.Authors) ?? new List<string> { },
                 Description = bookInfo.Description ?? "",
                 PageCount = bookInfo.PageCount ?? 0,
                 ImageLinks = new ImageLinksObj { Standard = bookInfo.ImageLinks.Thumbnail ?? "", Small = bookInfo.ImageLinks.SmallThumbnail ?? ""},

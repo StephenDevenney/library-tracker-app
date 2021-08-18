@@ -19,9 +19,20 @@ namespace Library.Tracker.Handler
             this.googleBooksAPI = _googleBooksAPI;
         }
         #endregion
-
+        
         #region GET
         public async Task<BookViewModel> GetBookFromISBN(string isbn) => await googleBooksAPI.GetBookByISBN(isbn);
+        public async Task<List<BookViewModel>> GetBookCollection()
+        {
+            List<BookViewModel> bookCollection = await bookRepo.GetBookCollection();
+
+            foreach(BookViewModel book in bookCollection)
+            {
+                book.Authors = await bookRepo.GetAuthorsFromIds(book.ISBN);
+            }
+
+            return bookCollection;
+        }
         #endregion
 
         #region PUT

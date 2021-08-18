@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Library.Tracker.Context.Interfaces;
 using Library.Tracker.Shared.Entities;
@@ -13,16 +13,35 @@ namespace Library.Tracker.Context
     {
         #region CONSTRUCTOR
         private readonly SqlContext sqlContext;
-        public BookContext(SqlContext _sqlRepo)
+        private readonly IGlobals globals;
+        public BookContext(SqlContext _sqlRepo, IGlobals _globals)
         {
             this.sqlContext = _sqlRepo;
+            this.globals = _globals;
         }
         #endregion
 
         #region GET
-        public void GetBook()
+        public async Task<List<BookViewModel>> GetBookCollection()
         {
+            UserEntity user = await this.globals.GetCurrentUser();
+            return await sqlContext.Book.Where(u => u.UserId == user.UserId).Select(book => new BookViewModel
+            {
+                Title = new Titles { BookName = book.BookName, BookSubTitle = book.BookSubTitle },
+                ISBN = book.ISBN,
+                Description = book.Description,
+                PageCount = book.PageCount,
+                ImageLinks = new ImageLinksObj { Small = book.ImageLinkSmall, Standard = book.ImageLinkStandard }
 
+            }).ToListAsync();
+        }
+
+        public async Task<List<string>> GetAuthorsFromIds(string isbn)
+        {
+            UserEntity user = await this.globals.GetCurrentUser();
+            string stringIds = await sqlContext.Book.Where(x => x.UserId == user.UserId && x.ISBN == isbn).Select(x => x.AuthorIds).FirstOrDefaultAsync();
+            int[] authorIds = Array.ConvertAll(stringIds.Split(",", StringSplitOptions.RemoveEmptyEntries), int.Parse);
+            return sqlContext.Author.Where(x => authorIds.Contains(x.AuthorId)).Select(x => x.AuthorName).ToList();
         }
 
         public async Task<AuthorEntity> GetAuthor(string authorName)
@@ -38,7 +57,9 @@ namespace Library.Tracker.Context
         #region POST
         public async Task AddBookToCollection(BookViewModel book, string authorIds)
         {
+            UserEntity user = await this.globals.GetCurrentUser();
             BookEntity bookToAdd = new BookEntity {
+                UserId = user.UserId,
                 BookName = book.Title.BookName,
                 BookSubTitle = book.Title.BookSubTitle,
                 ISBN = book.ISBN,

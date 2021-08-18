@@ -8,6 +8,7 @@ namespace Library.Tracker.Handler.Interfaces
     {
         #region GET
         public Task<BookViewModel> GetBookFromISBN(string isbn);
+        public Task<List<BookViewModel>> GetBookCollection();
         #endregion
 
         #region PUT

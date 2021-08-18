@@ -4,6 +4,7 @@ namespace Library.Tracker.Shared.Entities
     public class BookEntity
     {
         public int BookId { get; set; }
+        public int UserId { get; set; }
         public string BookName { get; set; }
         public string BookSubTitle { get; set; }
         public string ISBN { get; set; }

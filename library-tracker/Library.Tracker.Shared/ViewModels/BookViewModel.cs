@@ -1,10 +1,12 @@
 ﻿
+using System.Collections.Generic;
+
 namespace Library.Tracker.Shared.ViewModels
 {
     public class BookViewModel
     {
         public Titles Title { get; set; }
-        public string[] Authors { get; set; }
+        public List<string> Authors { get; set; }
         public string ISBN { get; set; }
         public string Description { get; set; }
         public int PageCount { get; set; }

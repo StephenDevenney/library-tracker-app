@@ -119,6 +119,7 @@ namespace Library.Tracker.Context
             _.ToTable("BookCollection", "book");
             _.HasKey(x => x.BookId);
             _.Property<int>(x => x.BookId).HasColumnName("BookId");
+            _.Property<int>(x => x.UserId).HasColumnName("FK_UserId");
             _.Property<string>(x => x.BookName).HasColumnName("BookName");
             _.Property<string>(x => x.BookSubTitle).HasColumnName("BookSubTitle");
             _.Property<string>(x => x.ISBN).HasColumnName("ISBN");

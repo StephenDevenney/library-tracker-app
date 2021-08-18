@@ -1,9 +1,9 @@
 ﻿using Library.Tracker.Handler.Interfaces;
-using Library.Tracker.Shared.ClientAPIs.Interfaces;
 using Library.Tracker.Shared.Security;
 using Library.Tracker.Shared.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Library.Tracker.API.Controllers
@@ -23,6 +23,9 @@ namespace Library.Tracker.API.Controllers
         [Authorize(Roles = SecureRole.Admin + "," + SecureRole.User)]
         [HttpGet("book-isbn/{isbn}")]
         public async Task<BookViewModel> GetBookByISBN(string isbn) => await bookHandler.GetBookFromISBN(isbn);
+        [Authorize(Roles = SecureRole.Admin + "," + SecureRole.User)]
+        [HttpGet("collection")]
+        public async Task<List<BookViewModel>> GetBookCollection() => await bookHandler.GetBookCollection();
         #endregion
 
         #region PUT
