@@ -77,6 +77,7 @@
     <Build Include="Tables\AppSettings.sql" />
     <Build Include="Tables\AppIdleSecs.sql" />
     <Build Include="Tables\Theme.sql" />
+    <Build Include="Tables\Authors.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Library.Tracker.Database.refactorlog" />
