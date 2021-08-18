@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/modules/sharedModule';
 import { BooksComponent } from './books-page/books.component';
+import { BooksService } from './books.service';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,9 @@ import { BooksComponent } from './books-page/books.component';
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    BooksService
   ]
 })
 
