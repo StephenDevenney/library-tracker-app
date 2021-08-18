@@ -23,5 +23,13 @@ namespace Library.Tracker.API.Controllers
         [HttpGet("book-isbn/{isbn}")]
         public async Task<BookViewModel> GetBookByISBN(string isbn) => await googleBooksAPI.GetBookByISBN(isbn);
         #endregion
+
+        #region PUT
+
+        #endregion
+
+        #region POST
+
+        #endregion
     }
 }

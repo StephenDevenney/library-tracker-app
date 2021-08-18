@@ -27,7 +27,8 @@ namespace Library.Tracker.Shared.ClientAPIs
 
             var responseString = await httpClient.GetStringAsync(new System.Uri("https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn));
             BookEntity bookE = JsonConvert.DeserializeObject<BookEntity>(responseString);
-            if (bookE == null || bookE.Items.Length == 0)
+
+            if (bookE == null || bookE.TotalItems == 0)
                 return null;
 
             Volumeinfo bookInfo = bookE.Items[0].VolumeInfo;
